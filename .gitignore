@@ -102,3 +102,14 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+*.xml
+*.iml
+*.pyc
+*.pdf
+.idea/
+data/
+*.csv
+
+*/bin/
+/.metadata/
