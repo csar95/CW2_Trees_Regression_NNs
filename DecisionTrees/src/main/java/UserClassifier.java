@@ -6,9 +6,9 @@ import weka.core.converters.ConverterUtils.DataSource;
 import java.util.Random;
 
 
-public class RandomForest {
+public class UserClassifier {
 
-    public void run (String options)
+    public void run ()
     {
         try
         {
@@ -18,8 +18,7 @@ public class RandomForest {
             data.setClassIndex(data.numAttributes() - 1);
 
             // Create new instance of scheme
-            weka.classifiers.trees.RandomForest model = new weka.classifiers.trees.RandomForest();
-            model.setOptions(Utils.splitOptions(options));
+            weka.classifiers.trees.UserClassifier model = new weka.classifiers.trees.UserClassifier();
             model.buildClassifier(data);
 
             System.out.println("=== Classifier model (full training set) ===\n");
@@ -33,6 +32,8 @@ public class RandomForest {
             System.out.println(eval.toSummaryString("=== Summary ===\n", false));
             System.out.println(eval.toClassDetailsString());
             System.out.println(eval.toMatrixString("=== Confusion Matrix ===\n"));
+
+            System.out.println(model.graph());
         }
         catch (Exception e)
         {
