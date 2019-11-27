@@ -1,4 +1,5 @@
 import weka.classifiers.Evaluation;
+import weka.classifiers.misc.InputMappedClassifier;
 import weka.core.Instances;
 import weka.core.Utils;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -64,10 +65,16 @@ public class J48 {
 
             System.out.println("Building classifier: " + datasets.toString() + " " + options);
 
+            InputMappedClassifier mappedCls = new InputMappedClassifier();
+
             // Create new instance of scheme
             weka.classifiers.trees.J48 model = new weka.classifiers.trees.J48();
             model.setOptions(Utils.splitOptions(options));
             model.buildClassifier(data_train);
+
+            mappedCls.setModelHeader(data_train);
+            mappedCls.setClassifier(model);
+            mappedCls.setSuppressMappingReport(true);
 
 //            System.out.println("=== Classifier model (full training set) ===\n");
 //            System.out.println(model);
@@ -84,8 +91,8 @@ public class J48 {
                 case TEST_FULL:
                 case TEST_9000:
                 case TEST_4000:
-                    eval = new Evaluation(data_train);
-                    eval.evaluateModel(model, data_test);
+                    eval = new Evaluation(data_test);
+                    eval.evaluateModel(mappedCls, data_test);
                     break;
                 default:
                     throw new Exception("You need to select a compatible data set name (KFOLD, TEST_FULL, TEST_4000, TEST_9000)");

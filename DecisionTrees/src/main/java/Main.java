@@ -13,7 +13,9 @@ public class Main {
                 "-C 0.5 -B -M 2",
                 "-C 0.5 -B -M 4",
                 "-U -M 2",
-                "-U -M 4"
+                "-U -M 4",
+                "-U -B -M 2",
+                "-U -B -M 4"
         };
         for (String s : settings) {
             for (Datasets d : Datasets.values()) {
@@ -21,7 +23,7 @@ public class Main {
             }
         }
 
-//        j48.run("-C 0.75 -M 2", Datasets.KFOLD);
+//        j48.run("-C 0.25 -M 2", Datasets.TEST_FULL);
 
 //        RandomForest randomForest = new RandomForest();
 //        String defaultRF = "-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1";
