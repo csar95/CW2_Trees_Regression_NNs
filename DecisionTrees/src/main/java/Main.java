@@ -27,10 +27,11 @@ public class Main {
 
         RandomForest randomForest = new RandomForest();
         String defaultRF = "-P 100 -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1";
+        String settingsRF = "-P 100 -attribute-importance -I 100 -num-slots 1 -K 0 -M 1.0 -V 0.001 -S 1";
 //        randomForest.run(defaultRF);
 
         for (Datasets d : Datasets.values()) {
-            randomForest.run(defaultRF, d);
+            randomForest.run(settingsRF, d);
         }
 
 //        UserClassifier userClassifier = new UserClassifier();
